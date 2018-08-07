@@ -9,13 +9,19 @@ public class FlightTest {
     private Customer mike;
     private Customer raphael;
     private Customer molly;
+    private Luggage mikebag;
+    private Luggage mollybag;
+    private Luggage raphaelbag;
 
     @Before
     public void before(){
-        flight = new Flight(1, 2);
-        Customer mike = new Customer("Mike");
-        Customer raphael = new Customer("Raphael");
-        Customer molly = new Customer("Molly");
+        flight = new Flight(1, 2, 1000);
+        mike = new Customer("Mike", 1);
+        raphael = new Customer("Raphael", 2);
+        molly = new Customer("Molly", 3);
+        mikebag = new Luggage(flight.getFlightNumber(), mike.getID(), 10 );
+        mollybag = new Luggage(flight.getFlightNumber(), molly.getID(), 50 );
+        raphaelbag = new Luggage(flight.getFlightNumber(), raphael.getID(), 30 );
     }
 
     @Test
@@ -46,4 +52,27 @@ public class FlightTest {
         boolean actual = flight.addCustomer(molly);
         assertEquals(false, actual);
     }
+
+    @Test
+    public void testGetWeightOfBagsCheckedIn(){
+        flight.addLuggage(mollybag);
+        flight.addLuggage(mikebag);
+        flight.addLuggage(raphaelbag);
+        assertEquals(90, flight.getWeightOfBagsCheckedIn(),0);
+    }
+
+    @Test
+    public void addBag_returns_true(){
+        boolean actual = flight.addLuggage(mollybag);
+        assertEquals(true, actual);
+    }
+
+    @Test
+    public void addBag_returns_false(){
+        flight = new Flight(1, 2, 10);
+        boolean actual = flight.addLuggage(mollybag);
+        assertEquals(false, actual);
+    }
+
+
 }

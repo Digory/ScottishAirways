@@ -8,5 +8,8 @@ public class Airline {
         return flight.getCapacity()  - flight.getCustomers().size();
     }
 
+    public boolean checkInLuggage(Luggage luggage, Flight flight){
+        return flight.addLuggage(luggage);
+    }
 
 }

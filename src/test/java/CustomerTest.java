@@ -8,11 +8,17 @@ public class CustomerTest {
         Customer customer;
         @Before
         public void before(){
-            customer = new Customer("Mike");
+            customer = new Customer("Mike", 1);
         }
 
         @Test
         public void hasName(){
             assertEquals("Mike", customer.getName());
         }
+
+        @Test
+    public void hasID(){
+            assertEquals(1, customer.getID());
+        }
+
 }
