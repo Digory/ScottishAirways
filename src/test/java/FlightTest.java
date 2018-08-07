@@ -74,5 +74,22 @@ public class FlightTest {
         assertEquals(false, actual);
     }
 
+    @Test
+    public void getLuggageCapacityRemaining_no_bags(){
+        double actual = flight.getLuggageCapacityRemaining();
+        assertEquals(100, actual, 0);
+    }
+
+    @Test
+    public void getLuggageCapacityRemaining_one_bag(){
+        flight = new Flight(1, 50, 100);
+        Luggage patbag = new Luggage(1, 1, 20);
+        flight.addLuggage(patbag);
+        double actual = flight.getLuggageCapacityRemaining();
+        assertEquals(80, actual, 0);
+    }
+
+
+
 
 }

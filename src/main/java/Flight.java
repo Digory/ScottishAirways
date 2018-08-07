@@ -42,6 +42,10 @@ public class Flight {
         }
     }
 
+    public double getLuggageCapacityRemaining(){
+        return (1-(getWeightOfBagsCheckedIn()/bagWeightCapacity))*100;
+    }
+
     public boolean addLuggage(Luggage luggage){
         if ((luggage.getWeight() + getWeightOfBagsCheckedIn()) <= this.bagWeightCapacity) {
             bags.add(luggage);
